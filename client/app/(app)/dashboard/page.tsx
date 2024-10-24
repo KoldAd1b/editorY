@@ -14,13 +14,13 @@ export default async function DashboardPage() {
   console.log(user.id);
 
   const userRes = await fetch(
-    `https://database.cestorage.workers.dev/api/user?id=${user.id}`
+    `https://database.eystorage.workers.dev/api/user?id=${user.id}`
   );
   const userData = (await userRes.json()) as User;
   console.log(userData);
 
   const sharedRes = await fetch(
-    `https://database.cestorage.workers.dev/api/virtualbox/share?id=${user.id}`
+    `https://database.eystorage.workers.dev/api/virtualbox/share?id=${user.id}`
   );
 
   const shared = (await sharedRes.json()) as {

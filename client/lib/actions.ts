@@ -14,7 +14,7 @@ export async function createVirtualbox(body: {
   visibility: string;
 }) {
   const res = await fetch(
-    "https://database.cestorage.workers.dev/api/virtualbox",
+    "https://database.eystorage.workers.dev/api/virtualbox",
     {
       method: "PUT",
       headers: {
@@ -29,7 +29,7 @@ export async function createVirtualbox(body: {
 
 export async function deleteVirtualbox(id: string) {
   const res = await fetch(
-    `https://database.cestorage.workers.dev/api/virtualbox?id=${id}`,
+    `https://database.eystorage.workers.dev/api/virtualbox?id=${id}`,
     {
       method: "DELETE",
     }
@@ -44,7 +44,7 @@ export async function updateVirtualbox(body: {
   visibility?: "public" | "private";
 }) {
   const res = await fetch(
-    "https://database.cestorage.workers.dev/api/virtualbox",
+    "https://database.eystorage.workers.dev/api/virtualbox",
     {
       method: "POST",
       headers: {
@@ -60,7 +60,7 @@ export async function updateVirtualbox(body: {
 export async function shareVirtualbox(virtualboxId: string, email: string) {
   try {
     const res = await fetch(
-      "https://database.cestorage.workers.dev/api/virtualbox/share",
+      "https://database.eystorage.workers.dev/api/virtualbox/share",
       {
         method: "POST",
         headers: {
@@ -84,7 +84,7 @@ export async function shareVirtualbox(virtualboxId: string, email: string) {
 
 export async function unshareVirtualbox(virtualboxId: string, userId: string) {
   const res = await fetch(
-    "https://database.cestorage.workers.dev/api/virtualbox/share",
+    "https://database.eystorage.workers.dev/api/virtualbox/share",
     {
       method: "DELETE",
       headers: {
@@ -103,7 +103,7 @@ export async function generateCode(code: string, line: number) {
     {
       method: "POST",
       headers: {
-        Authorization: "Bearer RBd66QH1LW3WFFjoarc1TBGgON0UcekCk3EnU_uC",
+        Authorization: `Bearer ${process.env.LLAMA_API_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -125,9 +125,9 @@ export async function generateCode(code: string, line: number) {
 
 export async function startServer(serviceName: string) {
   const command = new CreateServiceCommand({
-    cluster: "arn:aws:ecs:us-east-1:654654208427:cluster/virtualboxccce",
+    cluster: "arn:aws:ecs:us-east-1:654654208427:cluster/virtualboxeditorY",
     serviceName,
-    taskDefinition: "cccetasks",
+    taskDefinition: "editorYtasks",
     desiredCount: 1,
     networkConfiguration: {
       awsvpcConfiguration: {
@@ -156,7 +156,7 @@ export async function startServer(serviceName: string) {
 const checkServiceStatus = (serviceName: string) => {
   return new Promise((resolve, reject) => {
     const command = new DescribeServicesCommand({
-      cluster: "arn:aws:ecs:us-east-1:654654208427:cluster/virtualboxccce",
+      cluster: "arn:aws:ecs:us-east-1:654654208427:cluster/virtualboxeditorY",
       services: [serviceName],
     });
 

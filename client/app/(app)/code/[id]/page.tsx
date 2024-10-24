@@ -12,7 +12,7 @@ const CodeEditor = dynamic(() => import("@/components/editor"), {
 
 const getUserData = async (id: string) => {
   const userRes = await fetch(
-    `https://database.cestorage.workers.dev/api/user?id=${id}`
+    `https://database.eystorage.workers.dev/api/user?id=${id}`
   );
   const userData = (await userRes.json()) as User;
   return userData;
@@ -20,7 +20,7 @@ const getUserData = async (id: string) => {
 
 const getVirtualboxData = async (id: string) => {
   const virtualboxRes = await fetch(
-    `https://database.cestorage.workers.dev/api/virtualbox?id=${id}`
+    `https://database.eystorage.workers.dev/api/virtualbox?id=${id}`
   );
   const virtualboxData: Virtualbox = await virtualboxRes.json();
   return virtualboxData;
@@ -30,7 +30,7 @@ const getSharedUsers = async (usersToVirtualboxes: UsersToVirtualboxes[]) => {
   const shared = await Promise.all(
     usersToVirtualboxes?.map(async (user) => {
       const userRes = await fetch(
-        `https://database.cestorage.workers.dev/api/user?id=${user.userId}`
+        `https://database.eystorage.workers.dev/api/user?id=${user.userId}`
       );
       const userData: User = await userRes.json();
       return { id: userData.id, name: userData.name };
